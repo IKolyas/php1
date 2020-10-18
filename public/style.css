@@ -1,0 +1,136 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic);
+*{box-sizing: border-box;}
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+nav {background: #413F3C;}
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+nav ul:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+nav a {
+    text-decoration: none;
+    display: block;
+    transition: .3s linear;
+}
+.topmenu > li {
+    float: left;
+    position: relative;
+    border-left: 1px solid black;
+}
+.topmenu > li:first-child {border-left: 0;}
+.topmenu > li > a {
+    padding: 20px 30px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #FEFDFD;
+    letter-spacing: 2px;
+}
+.topmenu > li > a.active,
+.submenu a:hover {color: #ddbe86;}
+.topmenu .fa,
+.submenu .fa {
+    margin-left: 5px;
+    color: inherit;
+}
+.submenu {
+    position: absolute;
+    z-index: 5;
+    min-width: 200px;
+    background: white;
+    border-top: 1px solid #CBCBCC;
+    border-left: 1px solid #CBCBCC;
+    border-right: 1px solid #CBCBCC;
+    visibility: hidden;
+    opacity: 0;
+    transform-origin: 0% 0%;
+    transform: rotateX(-90deg);
+    transition: .3s linear;
+}
+.submenu li {position: relative;}
+.submenu li a {
+    color: #282828;
+    padding: 10px 20px;
+    font-size: 13px;
+    border-bottom: 1px solid #CBCBCC;
+}
+.submenu .submenu {
+    position: absolute;
+    left: 100%;
+    top: -1px;
+    transition: .3s linear;
+}
+nav li:hover > .submenu {
+    transform: rotateX(0deg);
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.imgs {
+    width: 200px;
+    height: 200px;
+    background-color: #ddbe86;
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    width: 500px;
+    align-content: center;
+
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 3rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 3rem;
+}
+.caption {
+    max-width: 500px;
+}
