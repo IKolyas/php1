@@ -1,8 +1,8 @@
 <?php
+include_once '../config/dbConnect.php';
+include_once '../config/main.php';
+include_once '../engine/db.php';
 include_once '../engine/scan.php';
-include_once '../engine/lists.php';
-
-$dirArr = arrScanDir($baseDir);
 
 ?>
 <!doctype html>
@@ -24,17 +24,14 @@ $dirArr = arrScanDir($baseDir);
     <nav>
         <ul class="topmenu">
             <li><a href="#" class="active">Главная</a></li>
-            <li><a href="#">Картинки <span class="fa fa-angle-down"></span></a>
-                <ul class="submenu">
-                    <? menuList($dirArr) ?>
-                </ul>
-            </li>
         </ul>
     </nav>
 </header>
 <main class="p-5">
-    <div id="images" class="h-100 row d-flex justify-content-between align-items-center p-5 m-5">
-        <? renderImg($dirArr) ?>
+    <div>
+        <div id="images" class="h-100 row d-flex justify-content-between align-items-center p-5 m-5">
+            <? include '../views/renderImg.php' ?>
+        </div>
     </div>
 
     <div id="myModal" class="modal">
@@ -66,9 +63,11 @@ $dirArr = arrScanDir($baseDir);
     let imgs = document.querySelectorAll('.imgs');
     imgs.forEach((item) => {
         item.addEventListener("click", (e) => {
-            modal.style.display = "block";
+            fetch(`http://php1/img.php?id=${item.id}`)
             modalImg.src = item.src;
             captionText.innerHTML = item.alt;
+            modal.style.display = "block";
+
         })
     })
 
