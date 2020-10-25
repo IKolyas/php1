@@ -1,5 +1,7 @@
 <?php
-define('USERNAME', 'root');
-define('PASSWORD', 'root');
-define('DATABASE_NAME', 'gallery');
-define('HOST', 'localhost:3306');
+return [
+    'host' => 'localhost:3306',
+    'login' => 'root',
+    'password' => 'root',
+    'db' => 'products',
+];
