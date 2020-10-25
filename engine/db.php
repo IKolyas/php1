@@ -1,20 +1,36 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
 
-function queryOne($connection, string $id)
+
+function getConnection()
 {
-    $query = "UPDATE gallery.images SET views = views + 1 where id = $id;";
-    var_dump($query);
-    return mysqli_query($connection, $query);
+    $config = include CONFIG_DIR . 'dbConnect.php';
+    static $connection = null;
+    if (is_null($connection)) {
+        $connection = mysqli_connect(
+            $config['host'],
+            $config['login'],
+            $config['password'],
+            $config['db']
+        );
+    }
+
+    return $connection;
 }
 
-function queryAll($connection)
+function execute(string $sql)
 {
-    $query = "SELECT * FROM gallery.images order by 'view' desc ;";
-    return mysqli_query($connection, $query);
+    $result = mysqli_query(getConnection(), $sql);
+    return mysqli_affected_rows(getConnection());
 }
 
-function addImage($connection, string $name, string $path)
+function queryOne(string $sql)
 {
-    $query = "INSERT INTO gallery.images (name, path) VALUES ('$name','$path');";
-    return mysqli_query($connection, $query);
+    return queryAll($sql)[0];
+}
+
+function queryAll(string $sql)
+{
+    $result = mysqli_query(getConnection(), $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
