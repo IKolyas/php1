@@ -1,7 +1,7 @@
 <?php
 include_once '../config/main.php';
-include_once ENGINE_DIR . 'request.php';
-require_once ENGINE_DIR . 'sql.php';
+include_once ENGINE_DIR . 'base.php';
+require_once ENGINE_DIR . 'requests.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $itemID = post('productId');

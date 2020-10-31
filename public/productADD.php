@@ -1,20 +1,19 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
-require_once ENGINE_DIR . "sql.php";
+require_once ENGINE_DIR . "requests.php";
 require_once ENGINE_DIR . "files.php";
-require_once ENGINE_DIR . "request.php";
+require_once ENGINE_DIR . "base.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //получаем данные из post
-    $productName = post('product_name');
-    $productDescription = post('product_description');
-    $productPrice = post('product_price');
+    $product = post('product');
 
     // трансформируем массив в удобный нам формат
     $images = transformArray(files('image'));
 
     // добавляем продукт в базу
-    addProduct($productName, $productDescription, $productPrice);
+    var_dump($product);
+    addProduct($product['product_name'], $product['product_description'], $product['product_price']);
 
 
     // получаем id последнего товара

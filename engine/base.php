@@ -24,3 +24,10 @@ function files(string $file)
     return null;
 }
 
+function redirect(string $url) {
+    header("Location: {$url}");
+}
+
+function hashPassword(string $string) {
+    return md5($string . 'd5f8');
+}
