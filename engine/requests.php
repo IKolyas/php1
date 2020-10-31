@@ -25,9 +25,16 @@ function addReview(int $productID, string $name, string $review)
     return execute($sql);
 }
 
+function createUser(string $login, string $password)
+{
+    $sql = "INSERT INTO user(login, password) VALUES ('{$login}', '{$password}')";
+    return execute($sql);
+}
+
 //READ
 function productsCatalog()
     // получить каталог товаров с 1 картинкой для главной страницы
+    // настройки php admin
 {
     $sql = "SELECT * FROM products prod LEFT JOIN                                 
     (SELECT * FROM images GROUP BY product_id) img ON prod.id = img.product_id ORDER BY prod.product_views DESC";
@@ -60,6 +67,13 @@ function getReviews(int $id)
 {
     $sql = "SELECT * FROM reviews WHERE product_id = {$id}";
     return queryAll($sql);
+}
+
+function userAut(string $login, string $password)
+    // проверка логина и пароля пользователя
+{
+    $sql = "SELECT * FROM user WHERE login = '{$login}' AND password = '{$password}'";
+    return queryOne($sql);
 }
 
 //UPDATE

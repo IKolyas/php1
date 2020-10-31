@@ -1,14 +1,14 @@
 <?php
 include_once '../config/main.php';
-include_once ENGINE_DIR . 'request.php';
-include_once ENGINE_DIR . 'sql.php';
+include_once ENGINE_DIR . 'base.php';
+include_once ENGINE_DIR . 'requests.php';
 
 $reviews = [];
 $itemID = (int)get('id');
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     incrementProductViews($itemID);   // ++views
-} elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+} else {
     $reviewUsername = post('username');
     $reviewText = post('review');
     addReview($itemID, $reviewUsername, $reviewText);
