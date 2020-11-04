@@ -1,7 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
 
-
 function getConnection()
 {
     $config = include CONFIG_DIR . 'dbConnect.php';
